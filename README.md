@@ -4,6 +4,8 @@ Projects with the DFROBOT Pirate 4WD and an Arduino Leonardo compatible board (R
 ##Software Development
 This project is being developed in Visual Studio 2013 with the Visual Micro plugin, but the source code can be also used with the Arduino suite or any other compatible IDE/compiler of your choice.
 
+C++ is the main language used for the libraries, with raw C (or even assembler) only used where really needed.
+
 ## Hardware
 **Mobile Platform:** DFROBOT Pirate 4WD  
 (http://www.dfrobot.com/index.php?route=product/product&path=37_111&product_id=97&sort=p.price&order=ASC)
