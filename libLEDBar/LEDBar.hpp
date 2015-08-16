@@ -1,57 +1,60 @@
 /*
-Klasse für LED-Bar zum Einsatz mit Romeo V2.0 im letsgoING-Fahrzeug
-Funktionen: Analogwert (0-1023) anzeigen, z.B. von Distanzsensor
-Teile zur LED-Ansteuerung (GroveLedbar.h) aus github.com/sysrun/GroveLedBar
-(c)16.07.2013 Michael Grupp
+Interface for 10-segment Grove LED bar
+
+Display functions for showing values from 0-1024:
+-10-bit counter
+-linear mapping (stack)
+
+16.07.2013 Michael Grupp, revision: 16.08.2015 
 */
 
 #include "Arduino.h"
 
 
-#ifndef _LGILEDBAR_
-#define _LGILEDBAR_
+#ifndef _LEDBAR_
+#define _LEDBAR_
 
 class LEDBar
 {
 private:
 	//Pins
-	uint8_t pinData;		//gelbes Kabel
-	uint8_t pinClock;		//weißes Kabel
+	uint8_t pinData;		//yellow cable
+	uint8_t pinClock;		//white cable
 
-	//mapping-Grenzen (min-max-Analogeingang)
+	//mapping values
 	int mapLow;
 	int mapHigh;
 	int mapped;
 
 	uint16_t output;
 
-	//für LED-Ansteuerung
+	//LED control
 	uint8_t
-		clkpin, datapin,     // Clock & data pin numbers
-		clkpinmask, datapinmask; // Clock & data PORT bitmasks
+		clkpin, datapin,		//Clock & data pin numbers
+		clkpinmask, datapinmask;//Clock & data PORT bitmasks
 	volatile uint8_t
-		*clkport, *dataport;   // Clock & data PORT registers
+		*clkport, *dataport;	//Clock & data PORT registers
 
 public:
-	//Konstruktoren
+	//Constructors
 	LEDBar(uint8_t pinData, uint8_t pinClock);
 	LEDBar(uint8_t pinData, uint8_t pinClock, int mapLow, int mapHigh);
 
-	//setter (Pins hier nicht sinnvoll)
+	//setters
 	void setMapLow(int mapLow);
 	void setMapHigh(int mapHigh);
 
-	//getter
+	//getters
 	uint8_t getPinData();
 	uint8_t getPinClock();
 	int getMapLow();
 	int getMapHigh();
 
-	//Anzeige als 10bit-Zähler (Lücken)
-	void analogToCounter(uint16_t analogVal);
+	//10-bit counter display
+	void displayCounter(uint16_t displayVal);
 
-	//Anzeige als Stack	(Lückenlos)
-	void analogToStack(uint16_t analogVal, bool direction);
+	//Linear stack display - direction==0 grows stack from green to red
+	void displayStack(uint16_t displayVal, bool direction);
 
 	//LED-Ansteuerung
 	void sendLED(uint16_t data);
