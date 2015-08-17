@@ -4,6 +4,8 @@ Ultrasonic::Ultrasonic(uint8_t pinTrigger, uint8_t pinEcho)
 {
 	this->pinTrigger = pinTrigger;
 	this->pinEcho = pinEcho;
+	pinMode(pinTrigger, OUTPUT);
+	pinMode(pinEcho, INPUT);
 	currentMeasurement.unit = Unit::CENTIMETERS;
 	currentMeasurement.distance = 0;
 	currentMeasurement.duration = 0;
@@ -13,6 +15,8 @@ Ultrasonic::Ultrasonic(uint8_t pinTrigger, uint8_t pinEcho, Unit unit)
 {
 	this->pinTrigger = pinTrigger;
 	this->pinEcho = pinEcho;
+	pinMode(pinTrigger, OUTPUT);
+	pinMode(pinEcho, INPUT);
 	currentMeasurement.unit = unit;
 	currentMeasurement.distance = 0;
 	currentMeasurement.duration = 0;
