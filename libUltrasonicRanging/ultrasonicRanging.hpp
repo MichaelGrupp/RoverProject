@@ -45,6 +45,7 @@ public:
 
 	//measurement
 	void measure();
+	bool inRange();
 
 };
 

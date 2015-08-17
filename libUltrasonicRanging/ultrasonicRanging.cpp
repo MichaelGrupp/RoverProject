@@ -60,3 +60,25 @@ void Ultrasonic::measure()
 		currentMeasurement.distance = (currentMeasurement.duration / 2) / 0.2915;
 	}
 }
+
+bool Ultrasonic::inRange()
+{
+	if (currentMeasurement.unit == Unit::CENTIMETERS) {
+		if (currentMeasurement.distance < 300 && currentMeasurement.distance >= 0)
+			return true;
+		else
+			return false;
+	}
+	else if (currentMeasurement.unit == Unit::METERS) {
+		if (currentMeasurement.distance < 3 && currentMeasurement.distance >= 0)
+			return true;
+		else 
+			return false;
+	}
+	else if (currentMeasurement.unit == Unit::MILLIMETERS) {
+		if (currentMeasurement.distance < 3000 && currentMeasurement.distance >= 0)
+			return true;
+		else
+			return false;
+	}
+}
