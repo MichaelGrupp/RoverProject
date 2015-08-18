@@ -8,35 +8,35 @@
 #include "TimerOne.h"
 #include "odometry.hpp"
 
-Odometry LeftOdometry(2);   //interrupt 2 = digital pin 0
-Odometry RightOdometry(3);  //interrupt 2 = digital pin 0
+Odometry myOdometry(2, 3);   //interrupt 2 = digital pin 0
 Drive Chassis;
 Ultrasonic USSensor(2, 3);
-uint8_t LeftMotorPower = 0;
-uint8_t RightMotorPower = 0;
+uint8_t LeftMotorPower = 100;
+uint8_t RightMotorPower = 100;
 int IR_dist1 = 0;
 int IR_dist2 = 0;
 bool bumped = false;
 int ledPin = 13;
 
+
+
 // the setup function runs once when you press reset or power the board
 void setup() {
-	Serial.begin(9600);
+	Timer1.initialize(myOdometry.getPeriod()); // set a timer of length x microseconds 
+	Timer1.attachInterrupt(myOdometry.ISR_timer); // attach the service routine here
 	pinMode(ledPin, OUTPUT);
 	USSensor.setUnit(Unit::CENTIMETERS);
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-
+  
 	IR_dist1 = analogRead(3);
 	IR_dist2 = analogRead(4);
 	USSensor.measure();
-	bumped = (USSensor.getDistance() > 5) && (USSensor.getDistance() < 15);
-	Serial.println(USSensor.getDistance());
+	bumped = (USSensor.getDistance() > 5) && (USSensor.getDistance() < 25);
 
 	if (bumped) {
-		Serial.println("bump 3");
 		Chassis.stop();
 		delay(50);
 		Chassis.driveStraight(75, Direction::BACKWARD);
@@ -48,37 +48,36 @@ void loop() {
 		delay(2000);
 	}
 	else if (IR_dist1 > 180) {
-		Serial.println("bump 1");
-		Chassis.driveCurved(220, Side::LEFT, Direction::FORWARD);
+		Chassis.driveCurved(250, Side::LEFT, Direction::FORWARD);
 		delay(200);
 	}
 	else if (IR_dist2 > 180) {
-		Serial.println("bump 2");
-		Chassis.driveCurved(220, Side::RIGHT, Direction::FORWARD);
+		Chassis.driveCurved(250, Side::RIGHT, Direction::FORWARD);
 		delay(200);
 	}
 	else {
-		//test odometry: set speed to roundabout 1 rotations per second
-		for (;;) {
-			if (LeftOdometry.getCurrentSpeed() < 0.5) {
-				LeftMotorPower = Chassis.getDriveParameters(Side::LEFT).power + 10;
+    Chassis.setDriveParameters_L(LeftMotorPower, Direction::FORWARD);
+    Chassis.setDriveParameters_R(RightMotorPower, Direction::FORWARD);
+    Chassis.drive();
+    delay(100);
+		//test odometry: set speeds of each wheel to roundabout x rotations per second
+	  if (myOdometry.getCurrentSpeed(Side::LEFT) < 0.2 && LeftMotorPower < 245) {
+				LeftMotorPower = Chassis.getDriveParameters(Side::LEFT).power + 5;
 				Chassis.setDriveParameters_L(LeftMotorPower, Direction::FORWARD);
 			}
-			if (RightOdometry.getCurrentSpeed() < 0.5) {
-				RightMotorPower = Chassis.getDriveParameters(Side::RIGHT).power + 10;
+		if (myOdometry.getCurrentSpeed(Side::RIGHT) < 0.2 && RightMotorPower < 245) {
+				RightMotorPower = Chassis.getDriveParameters(Side::RIGHT).power + 5;
 				Chassis.setDriveParameters_R(RightMotorPower, Direction::FORWARD);
 			}
-			else {
-				break;
-			}
-			Chassis.drive();
-      Serial.println(LeftOdometry.getCurrentSpeed());
-			delay(500);
+		if (myOdometry.getCurrentSpeed(Side::LEFT) > 0.22) {
+        LeftMotorPower = Chassis.getDriveParameters(Side::LEFT).power - 5;
+        Chassis.setDriveParameters_L(LeftMotorPower, Direction::FORWARD);
 		}
-		//status LED for debugging
-		//digitalWrite(ledPin, HIGH);
-		//delay(500);
-		//digitalWrite(ledPin, LOW);
+    if (myOdometry.getCurrentSpeed(Side::RIGHT) > 0.22) {
+        RightMotorPower = Chassis.getDriveParameters(Side::RIGHT).power - 5;
+        Chassis.setDriveParameters_R(RightMotorPower, Direction::FORWARD);
+    }
+    Chassis.drive();
 	}
 
 }

@@ -28,7 +28,7 @@ unsigned long Odometry::avgSpeeds[2] = { 0,0 };
 unsigned long Odometry::speeds[2] = { 0,0 };
 int Odometry::pulsesLeft = 0;
 int Odometry::pulsesRight = 0;
-long Odometry::period = 1000000;
+long Odometry::period = 100000;
 
 Odometry::Odometry(uint8_t interruptLeft, uint8_t interruptRight)
 {
@@ -38,14 +38,14 @@ Odometry::Odometry(uint8_t interruptLeft, uint8_t interruptRight)
 	odometryParameters_L.currentSpeed = 0;
 	odometryParameters_L.avgSpeed = 0;
 	odometryParameters_L.state = State::RUNNING;
-	attachInterrupt(interruptLeft, ISR_pulseLeft, RISING);
+	attachInterrupt(interruptLeft, ISR_pulseLeft, CHANGE);
 	odometryParameters_R.side = Side::RIGHT;
 	odometryParameters_R.ID = rightID;
 	odometryParameters_R.pulseCount = 0;
 	odometryParameters_R.currentSpeed = 0;
 	odometryParameters_R.avgSpeed = 0;
 	odometryParameters_R.state = State::RUNNING;
-	attachInterrupt(interruptRight, ISR_pulseRight, RISING);
+	attachInterrupt(interruptRight, ISR_pulseRight, CHANGE);
 	//Timer1 initialization
 	//period = 1000000; //period in microseconds
 	//Timer1.initialize(period); //default is 1 sec period
@@ -130,10 +130,10 @@ void Odometry::ISR_pulseRight()
 
 void Odometry::ISR_timer()
 {
-	speeds[leftID] = (pulsesLeft / pulsesPerRotation)*4;
+	speeds[leftID] = ((pulsesLeft / pulsesPerRotation)*10) / 2;
 	avgSpeeds[leftID] = (avgSpeeds[leftID] + speeds[leftID]) / 2;
 	pulsesLeft = 0;
-	speeds[rightID] = (pulsesRight / pulsesPerRotation)*4;
+	speeds[rightID] = ((pulsesRight / pulsesPerRotation)*10) / 2;
 	avgSpeeds[rightID] = (avgSpeeds[rightID] + speeds[rightID]) / 2;
 	pulsesRight = 0;
 	// Toggle LED (debug)
