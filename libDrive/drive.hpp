@@ -25,7 +25,7 @@ enum class Side {
 
 typedef struct DriveParameters {
 	Side side;
-	uint8_t speed;
+	uint8_t power;
 	Direction dir;
 };
 
@@ -50,18 +50,21 @@ public:
 	Drive();
 
 	//setters
-	void setDriveParameters_L(uint8_t speed, Direction dir);
-	void setDriveParameters_R(uint8_t speed, Direction dir);
+	void setDriveParameters_L(uint8_t power, Direction dir);
+	void setDriveParameters_R(uint8_t power, Direction dir);
+
+	//getters
+	DriveParameters getDriveParameters(Side side);
 
 	//Drive with current settings
 	void drive();
 
 	//Predefined drive functions
 	void stop();
-	void driveStraight(uint8_t speed, Direction dir);
-	void driveCurved(uint8_t speed, Side side, Direction dir);
-	void turnLeft(uint8_t speed);
-	void turnRight(uint8_t speed);
+	void driveStraight(uint8_t power, Direction dir);
+	void driveCurved(uint8_t power, Side side, Direction dir);
+	void turnLeft(uint8_t power);
+	void turnRight(uint8_t power);
 
 };
 

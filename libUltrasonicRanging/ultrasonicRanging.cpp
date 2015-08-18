@@ -1,4 +1,12 @@
+/*
+Interface for HC-SR04 measuring distances with ultrasound sensor
+
+17.07.2013 Michael Grupp
+*/
+
+
 #include "ultrasonicRanging.hpp"
+
 
 Ultrasonic::Ultrasonic(uint8_t pinTrigger, uint8_t pinEcho)
 {
