@@ -19,9 +19,12 @@ enum class Direction {
 	FORWARD, BACKWARD
 };
 
+#ifndef _SIDE_
+#define _SIDE_
 enum class Side {
 	LEFT, RIGHT
 };
+#endif
 
 typedef struct DriveParameters {
 	Side side;
