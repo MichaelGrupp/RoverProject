@@ -24,15 +24,15 @@ void loop() {
   IR_dist1 = analogRead(3);
   IR_dist2 = analogRead(4);
   USSensor.measure();
-  bumped = (USSensor.getDistance() > 5) && (USSensor.getDistance() < 20);
+  bumped = (USSensor.getDistance() > 5) && (USSensor.getDistance() < 25);
   Serial.println(USSensor.getDistance());
 
   if(bumped) {
     Serial.println("bump 3");
     Chassis.stop();
     delay(50);
-    //Chassis.driveStraight(75, Direction::BACKWARD);
-    //delay(3000);
+    Chassis.driveStraight(75, Direction::BACKWARD);
+    delay(2000);
     if (IR_dist1 > IR_dist2)
       Chassis.turnLeft(150);
     else
@@ -41,16 +41,12 @@ void loop() {
   }
   else if(IR_dist1 > 220) {
     Serial.println("bump 1");
-    Chassis.stop();
-    delay(50);
-    Chassis.turnLeft(150);
+    Chassis.driveCurved(220, Side::LEFT, Direction::FORWARD);
     delay(200);
   }
   else if(IR_dist2 > 220) {
     Serial.println("bump 2");
-    Chassis.stop();
-    delay(50);
-	  Chassis.turnRight(150);
+    Chassis.driveCurved(220, Side::RIGHT, Direction::FORWARD);
     delay(200);
   }
   else {

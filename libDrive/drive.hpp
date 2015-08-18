@@ -59,6 +59,7 @@ public:
 	//Predefined drive functions
 	void stop();
 	void driveStraight(uint8_t speed, Direction dir);
+	void driveCurved(uint8_t speed, Side side, Direction dir);
 	void turnLeft(uint8_t speed);
 	void turnRight(uint8_t speed);
 

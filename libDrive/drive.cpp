@@ -76,6 +76,21 @@ void Drive::driveStraight(uint8_t speed, Direction dir)
 	drive();
 }
 
+void Drive::driveCurved(uint8_t speed, Side side, Direction dir)
+{
+	if (side == Side::LEFT) {
+		motors_L.speed = 0;
+		motors_R.speed = speed;
+	}
+	else {
+		motors_L.speed = speed;
+		motors_R.speed = 0;
+	}
+	motors_L.dir = dir;
+	motors_R.dir = dir;
+	drive();
+}
+
 void Drive::turnLeft(uint8_t speed)
 {
 	motors_L.speed = speed;
