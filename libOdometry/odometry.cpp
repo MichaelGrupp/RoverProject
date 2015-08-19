@@ -15,19 +15,19 @@ int 4	-	dig pin 7
 */
 
 #include "odometry.hpp"
-#include "TimerOne.h"	//external library http://playground.arduino.cc/Code/Timer1
+//#include "TimerOne.h"	//external library http://playground.arduino.cc/Code/Timer1
 
 #define leftID 0
 #define rightID 1
 
-extern TimerOne Timer1;
+//extern TimerOne Timer1;
 
 //static instantiations
-uint8_t Odometry::pulsesPerRotation = 10;
-unsigned long Odometry::avgSpeeds[2] = { 0,0 };
-unsigned long Odometry::speeds[2] = { 0,0 };
-int Odometry::pulsesLeft = 0;
-int Odometry::pulsesRight = 0;
+uint8_t Odometry::pulsesPerRotation = 9;
+float Odometry::avgSpeeds[2] = { 0,0 };
+float Odometry::speeds[2] = { 0,0 };
+float Odometry::pulsesLeft = 0;
+float Odometry::pulsesRight = 0;
 long Odometry::period = 100000;
 
 Odometry::Odometry(uint8_t interruptLeft, uint8_t interruptRight)
@@ -118,24 +118,24 @@ void Odometry::ISR_pulseLeft()
 {
 	Odometry::pulsesLeft++;
 	// Toggle LED (debug)
-	digitalWrite(13, digitalRead(13) ^ 1);
+	//digitalWrite(13, digitalRead(13) ^ 1);
 }
 
 void Odometry::ISR_pulseRight()
 {
 	Odometry::pulsesRight++;
 	// Toggle LED (debug)
-	digitalWrite(13, digitalRead(13) ^ 1);
+	//digitalWrite(13, digitalRead(13) ^ 1);
 }
 
 void Odometry::ISR_timer()
 {
-	speeds[leftID] = ((pulsesLeft / pulsesPerRotation)*10) / 2;
-	avgSpeeds[leftID] = (avgSpeeds[leftID] + speeds[leftID]) / 2;
+	speeds[leftID] = ((pulsesLeft / pulsesPerRotation)*10);
+	avgSpeeds[leftID] = (avgSpeeds[leftID] + speeds[leftID]);
 	pulsesLeft = 0;
 	speeds[rightID] = ((pulsesRight / pulsesPerRotation)*10) / 2;
 	avgSpeeds[rightID] = (avgSpeeds[rightID] + speeds[rightID]) / 2;
 	pulsesRight = 0;
 	// Toggle LED (debug)
-	digitalWrite(13, digitalRead(13) ^ 1);
+	//digitalWrite(13, digitalRead(13) ^ 1);
 }

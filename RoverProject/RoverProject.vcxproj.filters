@@ -39,6 +39,9 @@
     <ClInclude Include="..\libUltrasonicRanging\ultrasonicRanging.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\TimerOne\TimerOne.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\libUltrasonicRanging\ultrasonicRanging.cpp">
@@ -57,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\libControl\control.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TimerOne\TimerOne.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

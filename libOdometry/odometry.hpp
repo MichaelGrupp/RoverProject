@@ -36,8 +36,8 @@ typedef struct OdometryParameters {
 	uint8_t ID;
 	State state;
 	int pulseCount;	//(current)
-	unsigned long currentSpeed;//rotations per second
-	unsigned long avgSpeed;
+	float currentSpeed;//rotations per second
+	float avgSpeed;
 };
 
 class Odometry
@@ -55,9 +55,9 @@ private:
 
 	// ISR stuff must be handled static
 	static long period;
-	static int pulsesRight, pulsesLeft;
-	static unsigned long speeds[];
-	static unsigned long avgSpeeds[];
+	static float pulsesRight, pulsesLeft;
+	static float speeds[];
+	static float avgSpeeds[];
 
 public:
 	//Constructor
