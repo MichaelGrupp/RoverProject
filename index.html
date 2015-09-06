@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Roverproject : Projects with the DFROBOT Pirate 4WD and an Arduino Leonardo compatible board (ROMEO v2.0), plus several sensors.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Roverproject</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/MichaelGrupp/RoverProject">View on GitHub</a>
+
+          <h1 id="project_title">Roverproject</h1>
+          <h2 id="project_tagline">Projects with the DFROBOT Pirate 4WD and an Arduino Leonardo compatible board (ROMEO v2.0), plus several sensors.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/MichaelGrupp/RoverProject/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/MichaelGrupp/RoverProject/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="roverproject" class="anchor" href="#roverproject" aria-hidden="true"><span class="octicon octicon-link"></span></a>RoverProject</h1>
+
+<p>Projects with the DFROBOT Pirate 4WD and an Arduino Leonardo compatible board (ROMEO v2.0), plus several sensors.</p>
+
+<h2>
+<a id="software-development" class="anchor" href="#software-development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Software Development</h2>
+
+<ul>
+<li>This project is being developed in Visual Studio 2015 with the Visual Micro plugin, but the source code can be also used with the Arduino suite or any other compatible IDE/compiler of your choice.</li>
+<li>C++ is the main language used for the libraries, with raw C (or even assembler) only used where really needed.
+
+<ul>
+<li>concepts of the C++11 standard (e.g. <code>enum class</code>) are used to keep the code as nice and modern as possible</li>
+<li>
+<strong>You have to specify C++11 compatibility manually</strong> - to do so, go to your Arduino installation folder and open <code>hardware/arduino/avr/platform.txt</code>. Append <code>-std=gnu++11</code> to the cpp compiler flags and reboot the IDE:</li>
+</ul>
+</li>
+</ul>
+
+<p><code>...</code></p>
+
+<p><code>compiler.cpp.flags=-c -g -Os {compiler.warning_flags} -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -MMD -std=gnu++11</code></p>
+
+<p><code>...</code></p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Simply copy the folders of the libraries you want to use in your project (e.g. <code>libDrive</code>) to the libraries path of your Arduino IDE (on Windows: <code>Documents/Arduino/libraries</code>) and use them like any other Arduino library.</p>
+
+<h2>
+<a id="hardware" class="anchor" href="#hardware" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware</h2>
+
+<p><strong>Mobile Platform:</strong> DFROBOT Pirate 4WD<br>
+(<a href="http://www.dfrobot.com/index.php?route=product/product&amp;path=37_111&amp;product_id=97&amp;sort=p.price&amp;order=ASC">http://www.dfrobot.com/index.php?route=product/product&amp;path=37_111&amp;product_id=97&amp;sort=p.price&amp;order=ASC</a>)</p>
+
+<p><strong>Microcontroller Board:</strong> DFROBOT Romeo v2.0 (Arduino Leonardo compatible)<br>
+(<a href="http://www.dfrobot.com/index.php?route=product/product&amp;path=35_104&amp;product_id=844">http://www.dfrobot.com/index.php?route=product/product&amp;path=35_104&amp;product_id=844</a>)</p>
+
+<p><strong>Infrared Range Sensor:</strong> Sharp 2Y0A21 (analog)<br>
+(<a href="http://www.sharpsma.com/webfm_send/1489">http://www.sharpsma.com/webfm_send/1489</a>)</p>
+
+<p><strong>Ultrasonic Range Sensor:</strong> HC-SR04<br>
+(<a href="http://www.micropik.com/PDF/HCSR04.pdf">http://www.micropik.com/PDF/HCSR04.pdf</a>)</p>
+
+<p><strong>Wheel Encoder:</strong> DFROBOT SEN0038<br>
+(<a href="http://www.dfrobot.com/index.php?route=product/product&amp;path=36_68&amp;product_id=98">http://www.dfrobot.com/index.php?route=product/product&amp;path=36_68&amp;product_id=98</a>)</p>
+
+<p><strong>Binary Light Sensor:</strong> Grove Line Finder<br>
+(<a href="http://www.seeedstudio.com/wiki/Grove_-_Line_Finder">http://www.seeedstudio.com/wiki/Grove_-_Line_Finder</a>)</p>
+
+<p><strong>LED Bar:</strong> Grove LED Bar<br>
+(<a href="http://www.seeedstudio.com/wiki/Grove_-_LED_Bar">http://www.seeedstudio.com/wiki/Grove_-_LED_Bar</a>)</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Roverproject maintained by <a href="https://github.com/MichaelGrupp">MichaelGrupp</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
