@@ -32,21 +32,23 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a id="roverproject" class="anchor" href="#roverproject" aria-hidden="true"><span class="octicon octicon-link"></span></a>RoverProject</h1>
+<a id="roverproject" class="anchor" href="#roverproject" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RoverProject</h1>
 
 <p>Projects with the DFROBOT Pirate 4WD and an Arduino Leonardo compatible board (ROMEO v2.0), plus several sensors.</p>
+
+<p>~under construction~</p>
 
 <p><img src="https://raw.githubusercontent.com/MichaelGrupp/RoverProject/master/doc/rover.JPG" width="600"></p>
 
 <h2>
-<a id="software-development" class="anchor" href="#software-development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Software Development</h2>
+<a id="software-development" class="anchor" href="#software-development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Software Development</h2>
 
 <ul>
 <li>This project is being developed in Visual Studio 2015 with the Visual Micro plugin, but the source code can be also used with the Arduino suite or any other compatible IDE/compiler of your choice.</li>
 <li>C++ is the main language used for the libraries, with raw C (or even assembler) only used where really needed.
 
 <ul>
-<li>concepts of the C++11 standard (e.g. <code>enum class</code>) are used to keep the code as nice and modern as possible</li>
+<li>concepts of the C++11 standard (e.g. <code>auto</code> or <code>enum class</code>) are used to keep the code as nice and modern as possible</li>
 <li>
 <strong>You have to specify C++11 compatibility manually</strong> - to do so, go to your Arduino installation folder and open <code>hardware/arduino/avr/platform.txt</code>. Append <code>-std=gnu++11</code> to the cpp compiler flags and reboot the IDE:</li>
 </ul>
@@ -60,12 +62,12 @@
 <p><code>...</code></p>
 
 <h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Simply copy the folders of the libraries you want to use in your project (e.g. <code>libDrive</code>) to the libraries path of your Arduino IDE (on Windows: <code>Documents/Arduino/libraries</code>) and use them like any other Arduino library.</p>
 
 <h2>
-<a id="hardware" class="anchor" href="#hardware" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware</h2>
+<a id="hardware" class="anchor" href="#hardware" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hardware</h2>
 
 <p><strong>Mobile Platform:</strong> DFROBOT Pirate 4WD<br>
 (<a href="http://www.dfrobot.com/index.php?route=product/product&amp;path=37_111&amp;product_id=97&amp;sort=p.price&amp;order=ASC">http://www.dfrobot.com/index.php?route=product/product&amp;path=37_111&amp;product_id=97&amp;sort=p.price&amp;order=ASC</a>)</p>
